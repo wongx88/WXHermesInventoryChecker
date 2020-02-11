@@ -1,0 +1,28 @@
+<!--index.wxml-->
+<view class="container">
+    <view class="userinfo">
+        <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> User</button>
+        <block wx:else>
+            <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        </block>
+    </view>
+    <view>
+      <view class='weui-cells weui-cells_form'>
+        <view class='weui-cell'>
+            <view class='weui-cell__hd'><label class="weui-label">包名</label></view>
+            <view class="weui-cell__bd"><input class="weui-input" type="text" bindinput='bagNameInput' required="true" pattern="REG_IDNUM"
+                                               maxlength="18" placeholder="输入包名" emptytips="输入包名" notmatchtips="输入包名"/></view>
+        </view>
+
+      </view>
+
+        <view class='weui-cells'>
+            <button type='primary' bindtap='bindData' class="weui-btn_primary weui-btn_loading">Search<view wx:if="{{inSearch}}" class="weui-loading"></view></button>
+            <button type='primary' bindtap='bindCancel'>Cancel</button>
+            <template is="wxParse" data="{{wxParseData:content.nodes}}" />
+        </view>
+    </view>
+
+
+</view>
